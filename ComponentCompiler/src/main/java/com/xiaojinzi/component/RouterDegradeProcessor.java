@@ -11,7 +11,6 @@ import com.xiaojinzi.component.bean.RouterDegradeAnnoBean;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -115,9 +114,10 @@ public class RouterDegradeProcessor extends BaseHostProcessor {
             JavaFile
                     .builder(pkg, typeSpec)
                     .indent("    ")
-                    .build().writeTo(mFiler);
-        } catch (IOException e) {
-            throw new ProcessException(e);
+                    .build()
+                    .writeTo(mFiler);
+        } catch (Exception e) {
+            // throw new ProcessException(e);
         }
     }
 

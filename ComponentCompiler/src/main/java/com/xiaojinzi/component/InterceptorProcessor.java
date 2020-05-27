@@ -14,7 +14,6 @@ import com.xiaojinzi.component.bean.InterceptorBean;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -152,9 +151,10 @@ public class InterceptorProcessor extends BaseHostProcessor {
             JavaFile
                     .builder(pkg, typeSpec)
                     .indent("    ")
-                    .build().writeTo(mFiler);
-        } catch (IOException e) {
-            throw new ProcessException(e);
+                    .build()
+                    .writeTo(mFiler);
+        } catch (Exception e) {
+            // throw new ProcessException(e);
         }
     }
 

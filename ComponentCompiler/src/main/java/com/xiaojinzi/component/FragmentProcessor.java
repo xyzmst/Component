@@ -12,7 +12,6 @@ import com.xiaojinzi.component.anno.FragmentAnno;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -131,9 +130,12 @@ public class FragmentProcessor extends BaseHostProcessor {
                 .build();
 
         try {
-            JavaFile.builder(pkg, typeSpec
-            ).indent("    ").build().writeTo(mFiler);
-        } catch (IOException ignore) {
+            JavaFile
+                    .builder(pkg, typeSpec)
+                    .indent("    ")
+                    .build()
+                    .writeTo(mFiler);
+        } catch (Exception ignore) {
             // ignore
         }
     }

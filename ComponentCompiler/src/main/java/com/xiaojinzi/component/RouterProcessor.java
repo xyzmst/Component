@@ -260,9 +260,10 @@ public class RouterProcessor extends BaseHostProcessor {
         try {
             JavaFile.builder(pkg, typeSpec)
                     .indent("    ")
-                    .build().writeTo(mFiler);
-        } catch (IOException e) {
-            throw new ProcessException(e);
+                    .build()
+                    .writeTo(mFiler);
+        } catch (Exception e) {
+            // throw new ProcessException(e);
         }
     }
 

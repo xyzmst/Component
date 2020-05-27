@@ -3,7 +3,9 @@ package com.xiaojinzi.component;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeName;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
@@ -112,8 +114,23 @@ public abstract class BaseProcessor extends AbstractProcessor {
 
     }
 
-    protected boolean isRouterDocEnable(){
+    protected boolean isRouterDocEnable() {
         return routerDocEnable && (routerDocFolder != null && !routerDocFolder.isEmpty());
+    }
+
+    @Override
+    public Set<String> getSupportedOptions() {
+        return super.getSupportedOptions();
+    }
+
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        return new HashSet<String>() {
+            {
+                this.add("RouterDocFolder");
+                this.add("RouterDocEnable");
+            }
+        };
     }
 
 }

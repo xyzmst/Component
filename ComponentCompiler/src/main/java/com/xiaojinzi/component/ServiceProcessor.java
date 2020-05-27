@@ -12,7 +12,6 @@ import com.xiaojinzi.component.anno.ServiceAnno;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -111,9 +110,11 @@ public class ServiceProcessor extends BaseHostProcessor {
                 .build();
 
         try {
-            JavaFile.builder(pkg, typeSpec
-            ).indent("    ").build().writeTo(mFiler);
-        } catch (IOException ignore) {
+            JavaFile.builder(pkg, typeSpec)
+                    .indent("    ")
+                    .build()
+                    .writeTo(mFiler);
+        } catch (Exception ignore) {
             // ignore
         }
     }

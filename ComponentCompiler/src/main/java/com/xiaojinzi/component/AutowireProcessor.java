@@ -179,9 +179,12 @@ public class AutowireProcessor extends BaseProcessor {
                 .addMethod(injectAttrValueMethod2(targetClass, parameterFieldSet))
                 .addMethod(injectServiceMethod(targetClass, parameterFieldSet));
         try {
-            JavaFile.builder(pkg, classBuilder.build()
-            ).indent("    ").build().writeTo(mFiler);
-        } catch (IOException ignore) {
+            JavaFile
+                    .builder(pkg, classBuilder.build())
+                    .indent("    ")
+                    .build()
+                    .writeTo(mFiler);
+        } catch (Exception ignore) {
             // ignore
         }
     }
@@ -351,9 +354,9 @@ public class AutowireProcessor extends BaseProcessor {
                         if (typeArguments.size() == 1) { // 处理泛型个数是一个的
                             if (mTypes.isSubtype(typeArguments.get(0), parcelableTypeMirror)) { // 如果是 Parcelable 及其子类
                                 methodBuilder.addStatement("$N = $T.getParcelableArrayList($N,$S,$L)", parameterName, parameterSupportTypeMirror, bundleCallStr, attrValueAutowiredAnno.value(), parameterName);
-                            }else if (mTypes.isSubtype(typeArguments.get(0), serializableTypeMirror)) { // 如果是 Serializable 及其子类
+                            } else if (mTypes.isSubtype(typeArguments.get(0), serializableTypeMirror)) { // 如果是 Serializable 及其子类
                                 methodBuilder.addStatement("$N = $T.getSerializable($N,$S,$L)", parameterName, parameterSupportTypeMirror, bundleCallStr, attrValueAutowiredAnno.value(), parameterName);
-                            }  else if (mTypeElementString.asType().equals(typeArguments.get(0))) {
+                            } else if (mTypeElementString.asType().equals(typeArguments.get(0))) {
                                 methodBuilder.addStatement("$N = $T.getStringArrayList($N,$S,$L)", parameterName, parameterSupportTypeMirror, bundleCallStr, attrValueAutowiredAnno.value(), parameterName);
                             } else if (charsequenceTypeMirror.equals(typeArguments.get(0))) {
                                 methodBuilder.addStatement("$N = $T.getCharSequenceArrayList($N,$S,$L)", parameterName, parameterSupportTypeMirror, bundleCallStr, attrValueAutowiredAnno.value(), parameterName);

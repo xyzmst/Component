@@ -29,7 +29,6 @@ import com.xiaojinzi.component.anno.router.UserInfoAnno;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -189,9 +188,10 @@ public class RouterApiProcessor extends BaseProcessor {
         try {
             JavaFile.builder(pkg, typeSpecBuilder.build())
                     .indent("    ")
-                    .build().writeTo(mFiler);
-        } catch (IOException e) {
-            throw new ProcessException(e);
+                    .build()
+                    .writeTo(mFiler);
+        } catch (Exception e) {
+            // throw new ProcessException(e);
         }
     }
 

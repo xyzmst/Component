@@ -1,6 +1,8 @@
 package com.xiaojinzi.component;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.processing.ProcessingEnvironment;
 
@@ -14,7 +16,6 @@ public abstract class BaseHostProcessor extends BaseProcessor {
 
     // 在每一个 module 中配置的 HOST 的信息
     protected String componentHost = null;
-
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
@@ -32,4 +33,12 @@ public abstract class BaseHostProcessor extends BaseProcessor {
         }
     }
 
+    @Override
+    public Set<String> getSupportedOptions() {
+        return new HashSet<String>(super.getSupportedOptions()){
+            {
+                this.add("HOST");
+            }
+        };
+    }
 }
